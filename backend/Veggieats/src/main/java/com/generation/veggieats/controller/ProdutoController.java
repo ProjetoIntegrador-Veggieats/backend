@@ -1,4 +1,4 @@
-package com.generation.veggieats.controller;
+	package com.generation.veggieats.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -54,16 +54,33 @@ public class ProdutoController {
     public ResponseEntity<List<Produto>> getByEstoqueBetween(@PathVariable BigDecimal inicio, @PathVariable BigDecimal fim){
         return ResponseEntity.ok(repository.findByEstoqueBetween(inicio, fim));
     }
+	@GetMapping("/tipoProduto/{tipoProduto}")
+	public ResponseEntity<List<Produto>> GetByTipo (@PathVariable String tipoProduto){
+		return ResponseEntity.ok(repository.findAllByTipoProdutoContainingIgnoreCase(tipoProduto));
+	}
+	@GetMapping("/precoMaior/{x}")
+    public ResponseEntity<List<Produto>> getByPrecoMaior(@PathVariable BigDecimal x){
+        return ResponseEntity.ok(repository.findByPrecoMaior(x));
+	}
+	@GetMapping("/precoMenor/{y}")
+    public ResponseEntity<List<Produto>> getByPrecoMenor(@PathVariable BigDecimal y){
+        return ResponseEntity.ok(repository.findByPrecoMenor(y));
+	}
+	//---------------MÉTODO POST--------------
 	
 	@PostMapping
 	public ResponseEntity<Produto> post (@Valid @RequestBody Produto produto){
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));
 	}
 	
+	//---------------MÉTODO PUT--------------
+	
 	@PutMapping
 	public ResponseEntity<Produto> put (@RequestBody Produto produto){
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(produto));
 	}
+	
+	//---------------MÉTODO DELETE------------
 	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
