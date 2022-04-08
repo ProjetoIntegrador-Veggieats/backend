@@ -56,8 +56,11 @@ public class UsuarioService {
 				usuarioLogin.get().setId(usuario.get().getId());
 				usuarioLogin.get().setNome(usuario.get().getNome());
 				usuarioLogin.get().setFoto(usuario.get().getFoto());
+				usuarioLogin.get().setCpf(usuario.get().getCpf());
+				usuarioLogin.get().setTipoUsuario(usuario.get().getTipoUsuario());
 				usuarioLogin.get().setToken(geradorBasicToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha()));
 				usuarioLogin.get().setSenha(usuario.get().getSenha());
+				
 				
 				return usuarioLogin; }
 		}
