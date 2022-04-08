@@ -1,63 +1,24 @@
 package com.generation.veggieats.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@Entity
-@Table(name="tb_usuario")
-public class Usuario {
-
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+public class UsuarioLogin {
+	
 	private Long id;
 	
-	@NotNull
 	private String nome;
 	
-	@NotNull
-	@Email
 	private String usuario;
 	
 	private String foto;
 	
-	@NotBlank(message = "Insira uma senha com no minímo 8 caracteres.")
-	@Size(min=8)
 	private String senha;
 	
-	@NotNull
-	@Size(min=14,max=14)
 	private String cpf;
 	
-	@NotNull
 	private String tipoUsuario;
 	
-
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("usuario")
-	private List<Produto>produto;
+	private String token;
 	
 	//-----------------GETTERS AND SETTERS-----------------
-	
-	public List<Produto> getProduto() {
-		return produto;
-	}
-
-	public void setProduto(List<Produto> produto) {
-		this.produto = produto;
-	}
 
 	public Long getId() {
 		return id;
@@ -106,6 +67,7 @@ public class Usuario {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
 	public String getTipoUsuario() {
 		return tipoUsuario;
 	}
@@ -113,5 +75,13 @@ public class Usuario {
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
-	
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 }
