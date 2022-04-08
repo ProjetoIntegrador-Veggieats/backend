@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,24 +24,24 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id;
 	
-	//@NotNull
+	@NotNull
 	private String nome;
 	
-	//@NotNull
-	private String email;
+	@NotNull
+	@Email
+	private String usuario;
 	
-	//@NotNull
 	private String foto;
 	
-	//@NotNull
-	//@Size(min=8, max=18)
+	@NotBlank(message = "Insira uma senha com no minímo 8 caracteres.")
+	@Size(min=8)
 	private String senha;
 	
-	//@NotNull
-	//@Size(min=14,max=14)
+	@NotNull
+	@Size(min=14,max=14)
 	private String cpf;
 	
-	//@NotNull
+	@NotNull
 	private String tipoUsuario;
 	
 
@@ -47,6 +49,23 @@ public class Usuario {
 	@JsonIgnoreProperties("usuario")
 	private List<Produto>produto;
 	
+	//metodos construtores para testes
+		//importante seguir a mesma ordem das declarações dos atributos de usuario acima
+		//construtor cheio
+		public Usuario(Long id, String nome, String usuario,String foto, String senha ,String cpf,String tipoUsuario) {
+			this.id=id;
+			this.nome=nome;
+			this.usuario=usuario;
+			this.foto=foto;
+			this.senha=senha;
+			this.cpf=cpf;
+			this.tipoUsuario=tipoUsuario;
+			
+			
+		}
+		//construtor vazio
+		public Usuario() {}
+		
 	//-----------------GETTERS AND SETTERS-----------------
 	
 	public List<Produto> getProduto() {
@@ -73,12 +92,12 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getFoto() {
