@@ -17,9 +17,10 @@ public class UsuarioLogin {
 	private String tipoUsuario;
 	
 	private String token;
+
+
 	
 	//-----------------GETTERS AND SETTERS-----------------
-
 	public Long getId() {
 		return id;
 	}
@@ -83,5 +84,6 @@ public class UsuarioLogin {
 	public void setToken(String token) {
 		this.token = token;
 	}
+
 
 }
